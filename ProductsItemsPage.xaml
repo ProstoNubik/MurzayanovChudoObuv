@@ -1,0 +1,98 @@
+﻿<Page x:Class="MurzayanovChudoObuv.ProductsItemsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MurzayanovChudoObuv"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Title="ProductsItemsPage" FontFamily="Calibri">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="Поиск" HorizontalAlignment="Center"/>
+                <TextBox Name="SearchTextBox" Width="200" Height="30" TextChanged="SearchTextBox_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="Сортировка" HorizontalAlignment="Center"/>
+                <ComboBox Name="SortComboBox" Width="200" SelectionChanged="SortComboBox_SelectionChanged">
+                    <TextBlock Text="По номеру позиции по возрастанию"/>
+                    <TextBlock Text="По номеру позиции по убыванию"/>
+                    <TextBlock Text="По размеру по возрастанию"/>
+                    <TextBlock Text="По размеру по убыванию"/>
+                    <TextBlock Text="По стоимости по возрастанию"/>
+                    <TextBlock Text="По стоимости по убыванию"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="Фильтрация по категории" HorizontalAlignment="Center"/>
+                <ComboBox Name="FilterComboBox" Width="200" SelectionChanged="FilterComboBox_SelectionChanged">
+                    <TextBlock Text="Все"/>
+                    <TextBlock Text="Детская"/>
+                    <TextBlock Text="Женская"/>
+                    <TextBlock Text="Мужская"/>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <Button Name="OrderButton" Content="Сделать заказ" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Visibility="Collapsed" Click="OrderButton_Click"/>
+
+        <ListView Name="ProductItemsListView" Grid.Row="2" SelectionMode="Multiple" SelectionChanged="ProductItemsListView_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.RowSpan="9">
+                            <Image.Source>
+                                <Binding Path="Products.ImagePath" TargetNullValue="Images/picture.png"/>
+                            </Image.Source>
+                        </Image>
+
+                        <TextBlock Text="Номер товарной позиции:" Grid.Column="1"/>
+                        <TextBlock Text="Название:" Grid.Column="1" Grid.Row="1"/>
+                        <TextBlock Text="Размер:" Grid.Column="1" Grid.Row="2"/>
+                        <TextBlock Text="Категория:" Grid.Column="1" Grid.Row="3"/>
+                        <TextBlock Text="Производитель:" Grid.Column="1" Grid.Row="4"/>
+                        <TextBlock Text="Состав" Grid.Column="1" Grid.Row="5"/>
+                        <TextBlock Text="Описание" Grid.Column="1" Grid.Row="6"/>
+                        <TextBlock Text="Стоимость" Grid.Column="1" Grid.Row="7"/>
+                        <TextBlock Text="Доступное количество:" Grid.Column="1" Grid.Row="8"/>
+
+                        <TextBlock Text="{Binding ID}" Grid.Column="2"/>
+                        <TextBlock Text="{Binding Products.Name}" Grid.Column="2" Grid.Row="1"/>
+                        <TextBlock Text="{Binding Sizes.Size, StringFormat={}{0:0.#}}" Grid.Column="2" Grid.Row="2"/>
+                        <TextBlock Text="{Binding Products.Categories.Name}" Grid.Column="2" Grid.Row="3"/>
+                        <TextBlock Text="{Binding Products.Manufactures.Name}" Grid.Column="2" Grid.Row="4"/>
+                        <TextBlock Text="{Binding Products.Composition}" Grid.Column="2" Grid.Row="5"/>
+                        <TextBlock Text="{Binding Products.Description}" Grid.Column="2" Grid.Row="6"/>
+                        <TextBlock Text="{Binding Products.Cost, StringFormat={}{0} руб.}" Grid.Column="2" Grid.Row="7"/>
+                        <TextBlock Text="{Binding Quantity}" Grid.Column="2" Grid.Row="8"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

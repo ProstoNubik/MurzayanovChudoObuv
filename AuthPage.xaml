@@ -1,0 +1,20 @@
+﻿<Page x:Class="MurzayanovChudoObuv.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MurzayanovChudoObuv"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200" FontFamily="Calibri"
+      Title="AuthPage">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Авторизация" FontSize="50" HorizontalAlignment="Center" Margin="5"/>
+            <TextBox Name="LoginTextBox" Text="Введите логин" Width="200" HorizontalAlignment="Center" FontSize="30" Margin="5" TextAlignment="Center"/>
+            <TextBlock Name="WrongLoginTextBlock" Text="Неверный логин" HorizontalAlignment="Center" Foreground="Red" Visibility="Collapsed"/>
+            <Button Name="LoginLoginButton" Content="Войти по логину" Margin="5" Click="LoginLoginButton_Click"/>
+            <Button Name="GuestLoginButton" Content="Войти как гость" Margin="5" Click="GuestLoginButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
