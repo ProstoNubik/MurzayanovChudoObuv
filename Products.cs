@@ -32,10 +32,23 @@ namespace MurzayanovChudoObuv
         public string ImagePath { get
             {
                 if (this.Image == null) return null;
-                
                 return "Images/" + this.Image;
             } 
         }
+
+        public int ItemsCount { get
+            {
+                return this.ProductItems.Count;
+            } 
+        }
+
+        public string ItemsCountText { get
+            {
+                return this.ItemsCount > 5 ? "Много" : "Мало";
+            } 
+        }
+
+        public int Discount { get; set; }
     
         public virtual Categories Categories { get; set; }
         public virtual Manufactures Manufactures { get; set; }

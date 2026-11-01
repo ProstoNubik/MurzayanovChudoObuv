@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="806498bece9b4906bfe3a4649511e0f9" Name="Diagram1">
+      <Diagram DiagramId="c824125709544c58a0fea7f71749ef1f" Name="Diagram1">
         <EntityTypeShape EntityType="MurzayanovModel.Categories" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="MurzayanovModel.Manufactures" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MurzayanovModel.OrderProductItems" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />

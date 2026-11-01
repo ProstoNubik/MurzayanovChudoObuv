@@ -19,11 +19,10 @@ namespace MurzayanovChudoObuv
 
         public static MurzayanovEntities getContext()
         {
-            if (_context == null)
+            if ( _context == null )
                 _context = new MurzayanovEntities();
             return _context;
         }
-
         public MurzayanovEntities()
             : base("name=MurzayanovEntities")
         {

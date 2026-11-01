@@ -32,7 +32,7 @@ namespace MurzayanovChudoObuv
             if (users.Any())
             {
                 Manager.currentUser = users.First();
-                Manager.MainFrame.Navigate(new ProductsItemsPage());
+                Manager.MainFrame.Navigate(new ProductPage());
             }
             else
                 WrongLoginTextBlock.Visibility = Visibility.Visible;
@@ -41,7 +41,7 @@ namespace MurzayanovChudoObuv
         private void GuestLoginButton_Click(object sender, RoutedEventArgs e)
         {
             Manager.currentUser = null;
-            Manager.MainFrame.Navigate(new ProductsItemsPage());
+            Manager.MainFrame.Navigate(new ProductPage());
         }
     }
 }

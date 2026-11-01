@@ -71,10 +71,20 @@
     <Compile Include="Manufactures.cs">
       <DependentUpon>MurzayanovModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MurzayanovModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MurzayanovModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="MurzayanovModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MurzayanovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MurzayanovModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MurzayanovModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="OrderProductItems.cs">
       <DependentUpon>MurzayanovModel.tt</DependentUpon>
@@ -87,6 +97,9 @@
     </Compile>
     <Compile Include="ProductItems.cs">
       <DependentUpon>MurzayanovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPage.xaml.cs">
+      <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Products.cs">
       <DependentUpon>MurzayanovModel.tt</DependentUpon>
@@ -123,26 +136,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductsItemsPage.xaml">
+    <Page Include="ProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager.cs" />
-    <Compile Include="MurzayanovModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MurzayanovModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MurzayanovModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MurzayanovModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ProductsItemsPage.xaml.cs">
-      <DependentUpon>ProductsItemsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -176,7 +176,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="MurzayanovModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MurzayanovModel.edmx</DependentUpon>
+      <LastGenOutput>MurzayanovModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MurzayanovModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MurzayanovModel.edmx</DependentUpon>
+      <LastGenOutput>MurzayanovModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\picture.png" />
     <Resource Include="Images\Чудо Обувь.ico" />
@@ -214,18 +225,6 @@
     <Resource Include="Images\IMG_WS_185528.png" />
     <Resource Include="Images\IMG_WS_185535.png" />
     <Resource Include="Images\IMG_WS_185538.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MurzayanovModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MurzayanovModel.Context.cs</LastGenOutput>
-      <DependentUpon>MurzayanovModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="MurzayanovModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MurzayanovModel.edmx</DependentUpon>
-      <LastGenOutput>MurzayanovModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

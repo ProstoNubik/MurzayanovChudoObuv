@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "D:\ИСП-4523\MurzayanovChudoObuv\MurzayanovModel.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\prost\OneDrive\Desktop\m\MurzayanovChudoObuv\MurzayanovModel.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

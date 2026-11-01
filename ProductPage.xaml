@@ -1,12 +1,12 @@
-﻿<Page x:Class="MurzayanovChudoObuv.ProductsItemsPage"
+﻿<Page x:Class="MurzayanovChudoObuv.ProductPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MurzayanovChudoObuv"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1200"
-      Title="ProductsItemsPage" FontFamily="Calibri">
+      d:DesignHeight="800" d:DesignWidth="1200" FontFamily="Calibri"
+      Title="ProductPage">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" Margin="10">
                 <TextBlock Text="Поиск" HorizontalAlignment="Center"/>
@@ -44,52 +44,38 @@
 
         <Button Name="OrderButton" Content="Сделать заказ" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Visibility="Collapsed" Click="OrderButton_Click"/>
 
-        <ListView Name="ProductItemsListView" Grid.Row="2" SelectionMode="Multiple" SelectionChanged="ProductItemsListView_SelectionChanged">
+        <ListView Name="ProductListView" Grid.Row="2" SelectionMode="Multiple" SelectionChanged="ProductListView_SelectionChanged" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="250"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <Image Grid.RowSpan="9">
+                        <Image Grid.RowSpan="4">
                             <Image.Source>
-                                <Binding Path="Products.ImagePath" TargetNullValue="Images/picture.png"/>
+                                <Binding Path="ImagePath" TargetNullValue="Images/picture.png"/>
                             </Image.Source>
                         </Image>
 
-                        <TextBlock Text="Номер товарной позиции:" Grid.Column="1"/>
-                        <TextBlock Text="Название:" Grid.Column="1" Grid.Row="1"/>
-                        <TextBlock Text="Размер:" Grid.Column="1" Grid.Row="2"/>
-                        <TextBlock Text="Категория:" Grid.Column="1" Grid.Row="3"/>
-                        <TextBlock Text="Производитель:" Grid.Column="1" Grid.Row="4"/>
-                        <TextBlock Text="Состав" Grid.Column="1" Grid.Row="5"/>
-                        <TextBlock Text="Описание" Grid.Column="1" Grid.Row="6"/>
-                        <TextBlock Text="Стоимость" Grid.Column="1" Grid.Row="7"/>
-                        <TextBlock Text="Доступное количество:" Grid.Column="1" Grid.Row="8"/>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Manufactures.Name, StringFormat={}{0}|}" FontSize="22"/>
+                            <TextBlock Text="{Binding Name}" FontSize="22"/>
+                        </StackPanel>
 
-                        <TextBlock Text="{Binding ID}" Grid.Column="2"/>
-                        <TextBlock Text="{Binding Products.Name}" Grid.Column="2" Grid.Row="1"/>
-                        <TextBlock Text="{Binding Sizes.Size, StringFormat={}{0:0.#}}" Grid.Column="2" Grid.Row="2"/>
-                        <TextBlock Text="{Binding Products.Categories.Name}" Grid.Column="2" Grid.Row="3"/>
-                        <TextBlock Text="{Binding Products.Manufactures.Name}" Grid.Column="2" Grid.Row="4"/>
-                        <TextBlock Text="{Binding Products.Composition}" Grid.Column="2" Grid.Row="5"/>
-                        <TextBlock Text="{Binding Products.Description}" Grid.Column="2" Grid.Row="6"/>
-                        <TextBlock Text="{Binding Products.Cost, StringFormat={}{0} руб.}" Grid.Column="2" Grid.Row="7"/>
-                        <TextBlock Text="{Binding Quantity}" Grid.Column="2" Grid.Row="8"/>
+                        <TextBlock Text="{Binding Categories.Name,StringFormat=Категория:{0}}" Grid.Row="1" Grid.Column="1"/>
+                        <TextBlock Text="{Binding ItemsCountText, StringFormat=Количество:{0}}" Grid.Row="2" Grid.Column="1"/>
+                        <TextBlock Text="{Binding Composition, StringFormat=Состав:{0}}" Grid.Row="3" Grid.Column="1"/>
+
+                        <TextBlock Text="{Binding Cost}" Grid.RowSpan="2" FontSize="26" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
