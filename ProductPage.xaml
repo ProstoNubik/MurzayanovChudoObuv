@@ -45,9 +45,14 @@
         <Button Name="OrderButton" Content="Сделать заказ" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Visibility="Collapsed" Click="OrderButton_Click"/>
 
         <ListView Name="ProductListView" Grid.Row="2" SelectionMode="Multiple" SelectionChanged="ProductListView_SelectionChanged" HorizontalContentAlignment="Stretch">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="{Binding ListColor}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
@@ -75,7 +80,7 @@
                         <TextBlock Text="{Binding ItemsCountText, StringFormat=Количество:{0}}" Grid.Row="2" Grid.Column="1"/>
                         <TextBlock Text="{Binding Composition, StringFormat=Состав:{0}}" Grid.Row="3" Grid.Column="1"/>
 
-                        <TextBlock Text="{Binding Cost}" Grid.RowSpan="2" FontSize="26" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"/>
+                        <TextBlock Text="{Binding CostWithDiscount}" Grid.RowSpan="2" FontSize="26" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

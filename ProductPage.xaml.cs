@@ -39,6 +39,21 @@ namespace MurzayanovChudoObuv
         public ProductPage()
         {
             InitializeComponent();
+            DateTime now = DateTime.Now;
+            DateTime lastMonthStart = now.AddMonths(-1);
+            DateTime lastMonthEnd = now.AddDays(-1);
+
+            var Products = MurzayanovEntities.getContext().Products.ToList();
+
+            foreach (Products product in Products)
+            {
+                var productItemsOrders = MurzayanovEntities.getContext().OrderProductItems.Where(pi => pi.ProductItems.ProductID == product.ID).ToList();
+                if (!productItemsOrders.Any(o => o.Orders.OrderDate >= lastMonthStart && o.Orders.OrderDate <= lastMonthEnd))
+                    product.Discount = 0.25;
+                else
+                    product.Discount = 0;
+            }
+
 
             FilterComboBox.SelectedIndex = 0;
             SortComboBox.SelectedIndex = 0;

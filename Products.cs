@@ -48,7 +48,22 @@ namespace MurzayanovChudoObuv
             } 
         }
 
-        public int Discount { get; set; }
+        public double Discount { get; set; }
+
+        public double CostWithDiscount { get
+            {
+                return (double)this.Cost * (1 - this.Discount);
+            } 
+        }
+
+        public string ListColor { get
+            {
+                if (this.ProductItems.Count <= 3)
+                    return "#FFA54A4A";
+
+                return "Transparent";
+            } 
+        }
     
         public virtual Categories Categories { get; set; }
         public virtual Manufactures Manufactures { get; set; }
