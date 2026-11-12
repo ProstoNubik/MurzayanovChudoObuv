@@ -11,8 +11,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -34,9 +34,7 @@
             </StackPanel>
         </StackPanel>
 
-        <Button Name="OrderButton" Content="Сделать заказ" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Visibility="Collapsed" Click="OrderButton_Click"/>
-
-        <ListView Name="ProductListView" Grid.Row="2" SelectionMode="Multiple" SelectionChanged="ProductListView_SelectionChanged" HorizontalContentAlignment="Stretch">
+        <ListView Name="ProductListView" Grid.Row="1" SelectionChanged="ProductListView_SelectionChanged" HorizontalContentAlignment="Stretch">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Background" Value="{Binding ListColor}"/>
@@ -57,11 +55,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Image Grid.RowSpan="4" Width="150" Margin="5">
-                            <Image.Source>
-                                <Binding Path="ImagePath" TargetNullValue="Images/picture.png"/>
-                            </Image.Source>
-                        </Image>
+                        <Image Source="{Binding ImagePath, TargetNullValue='pack://application:,,,/Images/picture.png'}"  Grid.RowSpan="4" Width="150" Margin="5"/>
 
                         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                             <TextBlock Text="{Binding Manufactures.Name, StringFormat={}{0}|}" FontSize="22"/>
@@ -77,5 +71,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button Name="OrderButton" Content="Сделать заказ" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Visibility="Collapsed" Click="OrderButton_Click"/>
     </Grid>
 </Page>

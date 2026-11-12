@@ -90,12 +90,12 @@ namespace MurzayanovChudoObuv
 
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow orderWindow = new OrderWindow(ProductListView.SelectedItems as List<ProductItems>);
+            OrderWindow orderWindow = new OrderWindow(ProductListView.SelectedItem as Products);
             orderWindow.ShowDialog();
 
             if (orderWindow.DialogResult == true)
             {
-
+                updateProducts();
             }
         }
 
@@ -103,7 +103,7 @@ namespace MurzayanovChudoObuv
         {
             if (Manager.currentUser != null)
             {
-                if (ProductListView.SelectedItems.Count > 0)
+                if (ProductListView.SelectedItem != null)
                     OrderButton.Visibility = Visibility.Visible;
                 else
                     OrderButton.Visibility = Visibility.Collapsed;

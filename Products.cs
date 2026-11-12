@@ -75,6 +75,16 @@ namespace MurzayanovChudoObuv
                 return "Transparent";
             } 
         }
+
+        public string SizesRange { get
+            {
+                var Sizes = this.ProductItems.Select(pi => pi.Sizes);
+                double min = Sizes.Min(s => (double)s.Size);
+                double max = Sizes.Max(s => (double)s.Size);
+
+                return $"{min}-{max}";
+            } 
+        }
     
         public virtual Categories Categories { get; set; }
         public virtual Manufactures Manufactures { get; set; }
