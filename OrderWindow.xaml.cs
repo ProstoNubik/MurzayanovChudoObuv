@@ -68,7 +68,7 @@ namespace MurzayanovChudoObuv
 
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
-            if (CountTextBlock.Text == "0")
+            if (ProductItemCount == 0)
             {
                 MessageBox.Show("Пожалуйсте, выберите количество товарной позиции, отличного от нуля.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -95,6 +95,8 @@ namespace MurzayanovChudoObuv
                 MurzayanovEntities.getContext().SaveChanges();
 
                 MessageBox.Show("Заказ успешно оформлен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                setProductItemCount(0);
             }
             catch (Exception ex)
             {
