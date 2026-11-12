@@ -21,24 +21,16 @@
                 <TextBox Name="SearchTextBox" Width="200" Height="30" TextChanged="SearchTextBox_TextChanged"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10">
-                <TextBlock Text="Сортировка" HorizontalAlignment="Center"/>
+                <TextBlock Text="Сортировка по цене" HorizontalAlignment="Center"/>
                 <ComboBox Name="SortComboBox" Width="200" SelectionChanged="SortComboBox_SelectionChanged">
-                    <TextBlock Text="По номеру позиции по возрастанию"/>
-                    <TextBlock Text="По номеру позиции по убыванию"/>
-                    <TextBlock Text="По размеру по возрастанию"/>
-                    <TextBlock Text="По размеру по убыванию"/>
-                    <TextBlock Text="По стоимости по возрастанию"/>
-                    <TextBlock Text="По стоимости по убыванию"/>
+                    <TextBlock/>
+                    <TextBlock Text="По возрастанию"/>
+                    <TextBlock Text="По убыванию"/>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10">
                 <TextBlock Text="Фильтрация по категории" HorizontalAlignment="Center"/>
-                <ComboBox Name="FilterComboBox" Width="200" SelectionChanged="FilterComboBox_SelectionChanged">
-                    <TextBlock Text="Все"/>
-                    <TextBlock Text="Детская"/>
-                    <TextBlock Text="Женская"/>
-                    <TextBlock Text="Мужская"/>
-                </ComboBox>
+                <ComboBox Name="FilterComboBox" Width="200" SelectionChanged="FilterComboBox_SelectionChanged"/>
             </StackPanel>
         </StackPanel>
 
@@ -54,8 +46,8 @@
                 <DataTemplate>
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="900"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -65,7 +57,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Image Grid.RowSpan="4">
+                        <Image Grid.RowSpan="4" Width="150" Margin="5">
                             <Image.Source>
                                 <Binding Path="ImagePath" TargetNullValue="Images/picture.png"/>
                             </Image.Source>
@@ -78,7 +70,7 @@
 
                         <TextBlock Text="{Binding Categories.Name,StringFormat=Категория:{0}}" Grid.Row="1" Grid.Column="1"/>
                         <TextBlock Text="{Binding ItemsCountText, StringFormat=Количество:{0}}" Grid.Row="2" Grid.Column="1"/>
-                        <TextBlock Text="{Binding Composition, StringFormat=Состав:{0}}" Grid.Row="3" Grid.Column="1"/>
+                        <TextBlock Text="{Binding Composition, StringFormat=Состав:{0}}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap"/>
 
                         <TextBlock Text="{Binding CostWithDiscount}" Grid.RowSpan="2" FontSize="26" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"/>
                     </Grid>

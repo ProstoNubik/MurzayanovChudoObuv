@@ -22,38 +22,49 @@ namespace MurzayanovChudoObuv
     {
         private void updateProducts()
         {
-            var currentProduct = MurzayanovEntities.getContext().Products.ToList();
+            var currentProducts = MurzayanovEntities.getContext().Products.ToList();
 
             // Search
+            string SearchText = SearchTextBox.Text
+                .ToLower()
+                .Replace("«", "")
+                .Replace("»", "");
 
+            currentProducts = currentProducts.Where(p =>
+                p.Name.ToLower().Replace("«", "").Replace("»", "").Contains(SearchText)
+                || 
+                p.Description.ToLower().Replace("«", "").Replace("»", "").Contains(SearchText))
+            .ToList();
 
             // Filter
-
+            if (FilterComboBox.SelectedIndex > 0)
+                currentProducts = currentProducts.Where(p => p.CategoryID == FilterComboBox.SelectedIndex).ToList();
 
             // Sort
+            if (SortComboBox.SelectedIndex == 1)
+                currentProducts = currentProducts.OrderBy(p => p.CostWithDiscount).ToList();
+            else if (SortComboBox.SelectedIndex == 2)
+                currentProducts = currentProducts.OrderByDescending(p => p.CostWithDiscount).ToList();
 
-
-            ProductListView.ItemsSource = currentProduct;
+            ProductListView.ItemsSource = currentProducts;
         }
 
         public ProductPage()
         {
             InitializeComponent();
-            DateTime now = DateTime.Now;
-            DateTime lastMonthStart = now.AddMonths(-1);
-            DateTime lastMonthEnd = now.AddDays(-1);
 
-            var Products = MurzayanovEntities.getContext().Products.ToList();
-
-            foreach (Products product in Products)
+            if (Manager.currentUser == null)
             {
-                var productItemsOrders = MurzayanovEntities.getContext().OrderProductItems.Where(pi => pi.ProductItems.ProductID == product.ID).ToList();
-                if (!productItemsOrders.Any(o => o.Orders.OrderDate >= lastMonthStart && o.Orders.OrderDate <= lastMonthEnd))
-                    product.Discount = 0.25;
-                else
-                    product.Discount = 0;
+                SearchTextBox.IsEnabled = false;
+                FilterComboBox.IsEnabled = false;
+                SortComboBox.IsEnabled = false;
             }
 
+            List<String> ProductTypeNamesList = new List<String>();
+            ProductTypeNamesList.Add("Все категории");
+            foreach (Categories category in MurzayanovEntities.getContext().Categories)
+                ProductTypeNamesList.Add(category.Name);
+            FilterComboBox.ItemsSource = ProductTypeNamesList;
 
             FilterComboBox.SelectedIndex = 0;
             SortComboBox.SelectedIndex = 0;

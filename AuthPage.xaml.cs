@@ -27,11 +27,11 @@ namespace MurzayanovChudoObuv
 
         private void LoginLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var users = MurzayanovEntities.getContext().Users.Where(p => (p.Login == LoginTextBox.Text)).ToList();
-
-            if (users.Any())
+            if (MurzayanovEntities.getContext().Users.Any(p => (p.Login == LoginTextBox.Text)))
             {
-                Manager.currentUser = users.First();
+                Users user = MurzayanovEntities.getContext().Users.First(p => (p.Login == LoginTextBox.Text));
+                Manager.currentUser = user;
+                Manager.currentUserTextBlock.Text = $"{user.Surname} {user.Name} {user.Patronymic}";
                 Manager.MainFrame.Navigate(new ProductPage());
             }
             else
@@ -41,6 +41,7 @@ namespace MurzayanovChudoObuv
         private void GuestLoginButton_Click(object sender, RoutedEventArgs e)
         {
             Manager.currentUser = null;
+            Manager.currentUserTextBlock.Text = "Неавторизованный пользователь";
             Manager.MainFrame.Navigate(new ProductPage());
         }
     }

@@ -27,6 +27,7 @@ namespace MurzayanovChudoObuv
             MainFrame.Navigate(new AuthPage());
 
             Manager.MainFrame = MainFrame;
+            Manager.currentUserTextBlock = CurrentUserTextBlock;
         }
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)

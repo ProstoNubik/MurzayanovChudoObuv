@@ -11,5 +11,7 @@ namespace MurzayanovChudoObuv
     {
         public static Frame MainFrame { get; set; }
         public static Users currentUser { get; set; }
+
+        public static TextBlock currentUserTextBlock { get; set; }
     }
 }

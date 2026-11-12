@@ -11,7 +11,8 @@ namespace MurzayanovChudoObuv
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Products
     {
         public Products()
@@ -48,7 +49,17 @@ namespace MurzayanovChudoObuv
             } 
         }
 
-        public double Discount { get; set; }
+        public double Discount { get
+            {
+                DateTime now = DateTime.Now;
+                DateTime lastMonthStart = now.AddMonths(-1);
+                DateTime lastMonthEnd = now.AddDays(-1);
+
+                if (!this.ProductItems.Any(pi => pi.OrderProductItems.Where(opi => opi.Orders.OrderDate >= lastMonthStart && opi.Orders.OrderDate <= lastMonthEnd).Count() > 0))
+                    return 0.25;
+                return 0;
+            }
+        }
 
         public double CostWithDiscount { get
             {
