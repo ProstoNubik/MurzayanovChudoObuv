@@ -20,6 +20,8 @@ namespace MurzayanovChudoObuv
     /// </summary>
     public partial class ProductPage : Page
     {
+        private List<ProductItemForOrder> selectedProductItemsForOrder = new List<ProductItemForOrder>();
+
         private void updateProducts()
         {
             var currentProducts = MurzayanovEntities.getContext().Products.ToList();
@@ -88,26 +90,60 @@ namespace MurzayanovChudoObuv
             updateProducts();
         }
 
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProductListView.SelectedItem == null)
+                return;
+
+            var addToOrderPage = new AddProductToOrderPage(ProductListView.SelectedItem as Products);
+
+            addToOrderPage.Result += ProductItemReceived;
+
+            ProductListView.SelectedItem = null;
+
+            Manager.MainFrame.Navigate(addToOrderPage);
+        }
+
+        private void ProductItemReceived(ProductItems SelectedProductItem, int SelectedProductItemCount)
+        {
+            if (selectedProductItemsForOrder.Any(pi => pi.productItem.ID == SelectedProductItem.ID))
+            {
+                var pifo = selectedProductItemsForOrder.First(pi => pi.productItem.ID == SelectedProductItem.ID);
+                pifo.itemCount += SelectedProductItemCount;
+                return;
+            }
+
+            ProductItemForOrder newProductItemForOrder = new ProductItemForOrder(SelectedProductItem, SelectedProductItemCount);
+
+            selectedProductItemsForOrder.Add(newProductItemForOrder);
+
+            updateOrderButtonVisibility();
+        }
+
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow orderWindow = new OrderWindow(ProductListView.SelectedItem as Products);
-            orderWindow.ShowDialog();
+            var orderPage = new OrderPage(selectedProductItemsForOrder);
 
-            if (orderWindow.DialogResult == true)
+            orderPage.NeedToClearList += ResetProductItemsForOrderList;
+
+            Manager.MainFrame.Navigate(orderPage);
+        }
+
+        private void ResetProductItemsForOrderList(bool NeedClear)
+        {
+            if (NeedClear)
             {
-                updateProducts();
+                selectedProductItemsForOrder.Clear();
+                updateOrderButtonVisibility();
             }
         }
 
-        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void updateOrderButtonVisibility()
         {
-            if (Manager.currentUser != null)
-            {
-                if (ProductListView.SelectedItem != null)
-                    OrderButton.Visibility = Visibility.Visible;
-                else
-                    OrderButton.Visibility = Visibility.Collapsed;
-            }
+            if (selectedProductItemsForOrder.Count > 0)
+                OrderButton.Visibility = Visibility.Visible;
+            else
+                OrderButton.Visibility = Visibility.Collapsed;
         }
     }
 }

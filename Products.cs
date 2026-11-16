@@ -79,6 +79,10 @@ namespace MurzayanovChudoObuv
         public string SizesRange { get
             {
                 var Sizes = this.ProductItems.Select(pi => pi.Sizes);
+
+                if (!Sizes.Any())
+                    return "Нету";
+
                 double min = Sizes.Min(s => (double)s.Size);
                 double max = Sizes.Max(s => (double)s.Size);
 

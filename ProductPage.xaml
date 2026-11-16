@@ -72,6 +72,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Name="OrderButton" Content="Сделать заказ" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Visibility="Collapsed" Click="OrderButton_Click"/>
+        <Button Name="OrderButton" Content="Оформить заказ" Width="200" Margin="5" HorizontalAlignment="Right" Visibility="Collapsed" Click="OrderButton_Click"/>
     </Grid>
 </Page>
